@@ -57,7 +57,7 @@ Since this is a **purely static** front-end introduction page, there is **no bui
 ### <a id="contact-en"></a>Contact
 For inquiries regarding E-era Passport, you can reach us at:
 - **Email**: [aboutaccount@qifalab.com](mailto:aboutaccount@qifalab.com)
-- **Official Website**: [https://aboutaccount.emoera.com](https://aboutaccount.emoera.com)
+- **Official Website**: [https://docs.qq.com/aio/DVHZpRFFTdUVIYlV2?p=kX3caDB2UwIVKSlijfdD7X](https://docs.qq.com/aio/DVHZpRFFTdUVIYlV2?p=kX3caDB2UwIVKSlijfdD7X)
 
 ---
 
@@ -123,7 +123,7 @@ E时代通行证是一个安全的数字身份认证服务，为用户提供安�
 ### <a id="联系我们-cn"></a>联系我们
 如需咨询 E时代通行证相关事宜，请通过以下方式联系我们：
 - **邮箱**: [aboutaccount@qifalab.com](mailto:aboutaccount@qifalab.com)
-- **官方网站**: [https://aboutaccount.emoera.com](https://aboutaccount.emoera.com)
+- **官方网站**: [https://docs.qq.com/aio/DVHZpRFFTdUVIYlV2?p=kX3caDB2UwIVKSlijfdD7X](https://docs.qq.com/aio/DVHZpRFFTdUVIYlV2?p=kX3caDB2UwIVKSlijfdD7X)
 
 ---
 
