@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E时代通行证 - 您的数字身份守护者</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a1128 0%, #1a237e 100%);
+            color: white;
+            z-index: 100;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%232d5af1" fill-opacity="0.05" d="M45,-78.1C58.3,-71.3,69.1,-58.7,77.8,-44.3C86.5,-29.9,93.2,-14.9,92.4,-0.4C91.7,14,83.5,28.1,74.7,41.6C65.8,55.1,56.3,68.1,43.1,75.6C29.9,83.1,14.9,85.1,0.7,83.8C-13.5,82.5,-27,77.9,-39.9,70.4C-52.8,62.9,-65,52.5,-73.7,39C-82.4,25.5,-87.5,8.9,-85.7,-6.2C-83.8,-21.4,-75,-35.1,-64.2,-45.6C-53.4,-56.1,-40.7,-63.3,-27.9,-70C-15,-76.7,-2.1,-82.9,10.9,-81.8C23.9,-80.7,47.8,-72.3,45,-78.1Z" transform="translate(100 100)" /></svg>') no-repeat center center;
+            opacity: 0.1;
+            z-index: -1;
+            background-size: 150% 150%;
+            animation: morphBackground 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(45, 90, 241, 0.1) 0%, transparent 50%);
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes morphBackground {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .shield-icon {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .shield-icon::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(45, 90, 241, 0.2) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .shield-icon::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(from 0deg, transparent, rgba(45, 90, 241, 0.2), transparent);
+            animation: rotate 8s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .shield-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: white;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #4c7fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-out;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero .features {
+            background: transparent;
+            padding: 0;
+            margin-top: 4rem;
+        }
+
+        .hero .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero .feature-card h3,
+        .hero .feature-card p {
+            color: white;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            border: 1px solid rgba(45, 90, 241, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(45, 90, 241, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2d5af1;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: translateZ(20px) scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-out 0.9s backwards;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #3949ab, #5c6bc0);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 90, 241, 0.3);
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            z-index: 99;
+        }
+
+        .security-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            margin: -50px auto 4rem;
+            padding: 2rem;
+            position: relative;
+            z-index: 101;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            transform: translateY(0);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            isolation: isolate;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: bold;
+            color: #2d5af1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #2d5af1, #4c7fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .stat-number::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2d5af1, transparent);
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e4e8eb 100%);
+            border-radius: 30px;
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+            z-index: 8;
+            transform: translateY(0);
+            isolation: isolate;
+        }
+
+        .security-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateZ(0);
+            will-change: transform, box-shadow;
+            opacity: 1;
+            transform: translateY(0);
+            animation: none;
+        }
+
+        .security-feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(45, 90, 241, 0.15);
+        }
+
+        .security-feature-icon {
+            font-size: 2.5rem;
+            color: #2d5af1;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(45, 90, 241, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .security-feature:hover .security-feature-icon {
+            transform: scale(1.1);
+            background: rgba(45, 90, 241, 0.1);
+        }
+
+        .security-feature-content {
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .security-feature:hover .security-feature-content {
+            transform: translateY(-3px);
+        }
+
+        .security-feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a237e;
+        }
+
+        .security-feature p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 4rem 0;
+            }
+
+            .security-stats,
+            .security-features,
+            .testimonials {
+                margin: 1rem;
+                border-radius: 20px;
+            }
+
+            .features {
+                padding: 1rem;
+            }
+
+            .hero .features {
+                padding: 0;
+            }
+
+            .security-stats {
+                margin-top: -30px;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .security-features,
+            .testimonials {
+                margin: 2rem 1rem;
+                transform: none !important;
+            }
+
+            .wave {
+                height: 50px;
+            }
+
+            .security-feature {
+                background: white;
+                backdrop-filter: none;
+            }
+            
+            .security-stats {
+                background: white;
+                backdrop-filter: none;
+            }
+        }
+
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+            margin: 2rem auto;
+            max-width: 1200px;
+            z-index: 5;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 0% 0%, rgba(45, 90, 241, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(45, 90, 241, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .testimonials .container {
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px) rotateX(2deg);
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: rgba(45, 90, 241, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .preload * {
+            transition: none !important;
+        }
+
+        .feature-card,
+        .security-feature,
+        .testimonial-card {
+            contain: content;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 102;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .advanced-features {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e4e8eb 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 7;
+            isolation: isolate;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .advanced-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(45, 90, 241, 0.1);
+            backdrop-filter: blur(10px);
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .advanced-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(45, 90, 241, 0.15);
+        }
+
+        .advanced-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .advanced-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(45, 90, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #2d5af1;
+            position: absolute;
+            left: 0;
+        }
+
+        .security-guarantee {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+            z-index: 6;
+            isolation: isolate;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .guarantee-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .guarantee-icon {
+            font-size: 2.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(45, 90, 241, 0.1), rgba(45, 90, 241, 0.05));
+            border-radius: 15px;
+        }
+
+        .guarantee-content h3 {
+            margin-bottom: 0.5rem;
+            color: #1a237e;
+        }
+
+        @media (max-width: 768px) {
+            .advanced-features,
+            .security-guarantee {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .guarantee-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+
+        .partners {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+            z-index: 4;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-advantages {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e4e8eb 100%);
+            position: relative;
+            z-index: 3;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tech-icon {
+            color: #2d5af1;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .primary-button {
+            background: white;
+            color: #1a237e;
+        }
+
+        .secondary-button {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: #0a1128;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            color: #4c7fff;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .partners,
+            .tech-advantages,
+            .contact-section {
+                padding: 3rem 1rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .footer {
+                padding: 3rem 1rem 1rem;
+            }
+
+            .footer-grid {
+                gap: 2rem;
+            }
+        }
+
+        [data-aos="fade-right"],
+        [data-aos="fade-left"] {
+            transform: translateX(-50px) !important;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        }
+
+        [data-aos="fade-right"].aos-animate,
+        [data-aos="fade-left"].aos-animate {
+            transform: translateX(0) !important;
+            opacity: 1;
+        }
+
+        .security-feature:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .security-feature:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        .security-feature:nth-child(4) {
+            transition-delay: 0.6s;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5af1, #4c7fff);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            flex-shrink: 0;
+        }
+
+        .avatar-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2d5af1, #4c7fff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .testimonial-info h4 {
+            margin: 0;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-info span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-quote {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .quote-icon {
+            color: rgba(45, 90, 241, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .testimonial-quote p {
+            position: relative;
+            z-index: 1;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .testimonial-rating {
+            margin-top: 1.5rem;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .star {
+            margin-right: 2px;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(45, 90, 241, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+
+    <div class="hero">
+        <div class="container">
+            <div class="shield-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                </svg>
+            </div>
+            <h1>E时代通行证</h1>
+            <p class="subtitle">您的数字身份守护者，为您的在线安全保驾护航</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>强大的安全防护</h3>
+                    <p>多重加密技术，确保您的账户安全无虞</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>隐私保护</h3>
+                    <p>严格的隐私保护机制，保护您的个人信息</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h3>一键登录</h3>
+                    <p>便捷的统一登录体验，畅通无阻</p>
+                </div>
+            </div>
+
+            <a href="#" class="cta-button">立即体验</a>
+        </div>
+        <div class="wave"></div>
+    </div>
+
+    <section class="security-stats">
+        <div class="stat-item" data-aos="fade-up">
+            <div class="stat-number">99.99%</div>
+            <div class="stat-label">安全可靠性</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">用户信任</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number">256位</div>
+            <div class="stat-label">加密保护</div>
+        </div>
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">安全监控</div>
+        </div>
+    </section>
+
+    <section class="security-features">
+        <div class="security-feature" data-aos="fade-right">
+            <div class="security-feature-icon">🔐</div>
+            <div class="security-feature-content">
+                <h3>双因素认证</h3>
+                <p>额外的安全层级保护，确保账户安全万无一失</p>
+            </div>
+        </div>
+        <div class="security-feature" data-aos="fade-left">
+            <div class="security-feature-icon">📱</div>
+            <div class="security-feature-content">
+                <h3>智能设备识别</h3>
+                <p>自动检测可疑登录行为，实时预警</p>
+            </div>
+        </div>
+        <div class="security-feature" data-aos="fade-right">
+            <div class="security-feature-icon">🛡️</div>
+            <div class="security-feature-content">
+                <h3>隐私数据加密</h3>
+                <p>全程加密传输，保护您的敏感信息</p>
+            </div>
+        </div>
+        <div class="security-feature" data-aos="fade-left">
+            <div class="security-feature-icon">⚡</div>
+            <div class="security-feature-content">
+                <h3>快速异常处理</h3>
+                <p>7×24小时安全团队随时待命</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="advanced-features">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">高级安全特性</h2>
+            <div class="advanced-grid">
+                <div class="advanced-card" data-aos="fade-up">
+                    <div class="advanced-icon">🔄</div>
+                    <h3>智能身份验证</h3>
+                    <p>基于AI的行为分析，自动识别异常登录行为</p>
+                    <ul class="feature-list">
+                        <li>设备指纹识别</li>
+                        <li>地理位置分析</li>
+                        <li>行为模式检测</li>
+                    </ul>
+                </div>
+                <div class="advanced-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="advanced-icon">🎯</div>
+                    <h3>精准访问控制</h3>
+                    <p>灵活的权限管理系统，确保数据安全</p>
+                    <ul class="feature-list">
+                        <li>多级权限控制</li>
+                        <li>临时授权管理</li>
+                        <li>操作审计追踪</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="security-guarantee">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">安全保障</h2>
+            <div class="guarantee-grid">
+                <div class="guarantee-item" data-aos="fade-right">
+                    <div class="guarantee-icon">🏛️</div>
+                    <div class="guarantee-content">
+                        <h3>合规认证</h3>
+                        <p>通过E时代信息安全认证，符合网络安全等级保护标准</p>
+                    </div>
+                </div>
+                <div class="guarantee-item" data-aos="fade-left">
+                    <div class="guarantee-icon">🔒</div>
+                    <div class="guarantee-content">
+                        <h3>数据保护</h3>
+                        <p>采用高级加密技术，确保您的数据安全</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">用户评价</h2>
+            <p class="section-subtitle" data-aos="fade-up">来自真实用户的使用体验</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">Z</div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>张先生</h4>
+                            <span>企业用户</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10zM17.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L20.758 4.03c0 0-.218.052-.597.144-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162C14.219 8.33 14.02 8.778 13.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C13.535 17.474 15.338 19 17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10z"/>
+                        </svg>
+                        <p>E时代通行证让我的网上生活更加安全，再也不用担心账号安全问题。作为企业用户，我们特别看重的就是安全性和可靠性，这个产品完全满足了我们的需求。</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">L</div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>李女士</h4>
+                            <span>个人用户</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        <svg class="quote-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10z"/>
+                        </svg>
+                        <p>一键登录功能特别方便，同时还能保证安全，很棒的产品！双因素认证让我感觉特别安心，即使密码泄露也不用担心账号安全。</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <div class="scroll-indicator">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div> -->
+
+    <section class="partners">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">合作伙伴</h2>
+            <p class="section-subtitle" data-aos="fade-up">值得信赖的企业都在使用</p>
+            <div class="partners-grid">
+                <div class="partner-item" data-aos="fade-up">
+                    <div class="partner-logo">🏢</div>
+                    <span>科技公司</span>
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="partner-logo">🏦</div>
+                    <span>金融机构</span>
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="partner-logo">🏫</div>
+                    <span>教育机构</span>
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="partner-logo">🏥</div>
+                    <span>医疗机构</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-advantages">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">技术优势</h2>
+            <div class="tech-grid">
+                <div class="tech-card" data-aos="zoom-in">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.7L20 9v6l-8 4-8-4V9l8-4.3z"/>
+                        </svg>
+                    </div>
+                    <h3>零信任架构</h3>
+                    <p>采用先进的零信任安全架构，确保每次访问都经过严格的身份验证和授权</p>
+                </div>
+                <div class="tech-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>量子级加密</h3>
+                    <p>使用最新的量子级加密算法，为未来的安全挑战做好准备</p>
+                </div>
+                <div class="tech-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M12 11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 2c0-3.31-2.69-6-6-6s-6 2.69-6 6c0 2.22 1.21 4.15 3 5.19l1-1.74c-1.19-.7-2-1.97-2-3.45 0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.48-.81 2.75-2 3.45l1 1.74c1.79-1.04 3-2.97 3-5.19zM12 3C6.48 3 2 7.48 2 13c0 3.7 2.01 6.92 4.99 8.65l1-1.73C5.61 18.53 4 15.96 4 13c0-4.42 3.58-8 8-8s8 3.58 8 8c0 2.96-1.61 5.53-4 6.92l1 1.73c2.99-1.73 5-4.95 5-8.65 0-5.52-4.48-10-10-10z"/>
+                        </svg>
+                    </div>
+                    <h3>AI智能防护</h3>
+                    <p>基于机器学习的智能安全防护系统，实时识别和预防安全威胁</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content" data-aos="fade-up">
+                <h2>开始使用</h2>
+                <p>立即体验更安全的数字身份认证服务</p>
+                <div class="contact-buttons">
+                    <a href="https://account.emoera.com" class="primary-button">立即使用</a>
+                    <a href="mailto:account@qifalab.com" class="secondary-button">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li><a href="https://we.emoera.com" target="_blank" rel="noopener noreferrer">E时代官网</a></li>
+                        <li><a href="https://qifalab.cn" target="_blank" rel="noopener noreferrer">启发实验室</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>产品服务</h3>
+                    <ul>
+                        <li><a href="https://aboutaccount.emoera.com" target="_blank" rel="noopener noreferrer">E时代通行证</a></li>
+                        <li><a href="https://ide.emoera.com" target="_blank" rel="noopener noreferrer">E时代IDE</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <ul>
+                        <li><a href="mailto:account@qifalab.com">account@qifalab.com</a></li>
+                        <li><a href="https://docs.qq.com/aio/DVHZpRFFTdUVIYlV2?p=kX3caDB2UwIVKSlijfdD7X" target="_blank" rel="noopener noreferrer">此项目更新日志</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 启发lab 版权所有 <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">蜀ICP备2024055741号</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            disable: false,
+            easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+            delay: 0
+        });
+
+        const cursor = document.querySelector('.cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+        });
+
+        document.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.hero [data-aos]').forEach(element => {
+                    const speed = element.dataset.speed || 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('preload');
+            window.setTimeout(() => {
+                document.body.classList.remove('preload');
+            }, 500);
+        });
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            
+            const cursor = document.querySelector('.cursor-follower');
+            if (cursor) {
+                cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            }
+        }
+
+        animate();
+    </script>
+</body>
+</html>
